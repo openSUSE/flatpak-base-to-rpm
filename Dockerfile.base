@@ -1,0 +1,13 @@
+FROM opensuse/leap:15.2
+
+RUN zypper refresh && zypper -n install \
+    xeyes \
+    flatpak \
+    wget \
+    tar \
+    gzip \
+  && true
+
+RUN flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+#RUN flatpak install -y flathub runtime/org.gnome.Platform/x86_64/3.36
