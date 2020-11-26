@@ -1,7 +1,6 @@
 FROM opensuse/leap:15.2
 
 RUN zypper refresh && zypper -n install \
-    xeyes \
     flatpak \
     wget \
     tar \
