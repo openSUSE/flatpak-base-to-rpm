@@ -1,4 +1,4 @@
-Install flatpak base images and create tar archives under $PWD/out
+## Install flatpak base images and create rpm specs and tar archives
 
 Build the container for installing flatpak base images:
 
@@ -18,3 +18,21 @@ Examples:
     % scripts/flatpak-call-install.sh org.freedesktop.Platform/x86_64/20.08
     % perl scripts/flatpak-spec.pl org.freedesktop.Platform
 
+### Requirements
+
+* bash
+* perl >= 5.22
+* perl-YAML-PP
+* perl-Getopt-Long-Descriptive
+* perl-XML-LibXML
+
+The flatpak commands are running in a docker container, so you only need docker
+for that, but the perl scripts run on your machine.
+
+## Build the container for building flatpak images
+
+For trying out building apps in docker:
+
+    make docker-builder
+
+Note that you have to run docker with the `--privileged` option.
