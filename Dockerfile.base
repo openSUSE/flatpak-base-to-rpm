@@ -1,4 +1,4 @@
-FROM opensuse/leap:15.2
+FROM opensuse/tumbleweed
 
 RUN zypper refresh && zypper -n install \
     flatpak \

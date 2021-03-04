@@ -4,19 +4,42 @@ Build the container for installing flatpak base images:
 
     make docker-base
 
-Examples:
+Example:
 
     # Check for necessary updates
     % perl scripts/flatpak-check-updates.pl
+    → org.freedesktop.Platform can be updated (v20.08.3 -> v20.08.5)
+    → org.freedesktop.Sdk can be updated (v20.08.3 -> v20.08.5)
+    ✓ org.gnome.Platform is uptodate (v3.38)
+    ✓ org.gnome.Sdk is uptodate (v3.38)
+    ✓ org.kde.Platform is uptodate (v5.15)
+    ✓ org.kde.Sdk is uptodate (v5.15)
 
+    # Checkout OBS:Flatpak
+    % cd ~/osc
+    # Warning! Needs 11G disk space (currently)
+    % osc co OBS:Flatpak
+
+    # Update org.freedesktop.Sdk
     # Install a runtime in docker environment and create tarballs under `output/`
+    # Use '20.08' (the flatpak branch name), not the full version
     % scripts/flatpak-call-install.sh runtime/org.freedesktop.Sdk/x86_64/20.08
     # Create spec files from tarballs under `osc/package-name/`
     % perl scripts/flatpak-spec.pl org.freedesktop.Sdk
     # Then move the resulting files in the `osc/` directories to your osc checkout
+    % rsync -a osc/org.* ~/osc/OBS:Flatpak/
+    # Remove generated files
+    % rm -rf osc/org.*
 
-    % scripts/flatpak-call-install.sh org.freedesktop.Platform/x86_64/20.08
+    # Update org.freedesktop.Platform
+    % scripts/flatpak-call-install.sh runtime/org.freedesktop.Platform/x86_64/20.08
     % perl scripts/flatpak-spec.pl org.freedesktop.Platform
+    % rsync -a osc/org.* ~/osc/OBS:Flatpak/
+    % rm -rf osc/org.*
+
+    # Commit the updated OBS packages
+    % cd ~/osc/OBS:Flatpak/
+    # look for updated packages and commit
 
 ### Requirements
 
