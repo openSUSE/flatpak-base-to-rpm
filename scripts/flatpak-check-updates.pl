@@ -53,6 +53,8 @@ for my $line (@list) {
     my ($name, $version, $branch) = split m/\t/, $line;
     next unless exists $runtimes->{ $name };
     $version ||= $branch;
+    # version can be '5.15-21.08' for example
+    $version =~ s/-/./g;
     $version = version->parse('v' . $version);
     if ($version > $runtimes->{ $name }->{max_flatpak}) {
         $runtimes->{ $name }->{max_flatpak} = $version;
