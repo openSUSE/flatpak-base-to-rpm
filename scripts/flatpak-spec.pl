@@ -99,6 +99,7 @@ sub package2spec($pkg) {
     }
     $versioned =~ s/\$REQUIRES\b/$requires/;
 
+    mkdir $oscdir;
     mkdir "$oscdir/$name";
     say "Creating $oscdir/$name/$name.spec";
     open my $fh, '>', "$oscdir/$name/$name.spec";
