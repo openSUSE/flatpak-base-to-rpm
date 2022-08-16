@@ -43,7 +43,7 @@ my %specs;
 
 opendir(my $dh, $dir);
 for my $tar (sort readdir $dh) {
-    next unless $tar =~ m/^([\w.]+)-v([0-9.]+)\.$arch\.tar\.gz$/;
+    next unless $tar =~ m/^([\w.-]+)-v([0-9.]+)\.$arch\.tar\.gz$/;
     my ($pkg, $v) = ($1, $2);
     unless ($pkg eq $package) {
         push @deps, "$pkg-v$v";
